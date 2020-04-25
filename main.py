@@ -46,6 +46,8 @@ def Run():
             extra()
         elif start == 'cd.ex.com':
             run_ex()
+        elif start == 'cd.com':
+            command()
         elif start == 'quit':
             break
         elif start == 'cd.ex.opt':
