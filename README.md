@@ -8,7 +8,7 @@ cd.dwn: Moves to download file
 
 cd.rd: moves to read function
   rf.read: reads file
-  rf.zip: reads files in zip
+  rf.zip: reads files in zip ~Zip file function right now does not work, look back here in next version
   rf.echo: reads file then clears it
   
 
@@ -47,3 +47,6 @@ quit: quits the program
 
 universial:
 back: back to where you where
+
+
+Next update 4/30/2020 at 12:00AM at the latest
