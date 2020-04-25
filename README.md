@@ -13,7 +13,7 @@ cd.rd: moves to read function
   
 
 cd@: reads filesize
-cd.home/cd!: goes to starting directory
+cd.home/ cd!: goes to starting directory
 cd~dir: checks if directory exists
 cd~: prints current directory
 wd: changes working directory
