@@ -1,3 +1,4 @@
+
 import sys, os, time, webbrowser, urllib.request, zipfile, io, subprocess
 from shutil import copyfile
 import shutil
@@ -18,67 +19,70 @@ def Run():
         else:
             print('that directory does not exist')
 
-    # create a dictionary that maps input strings to functions (notice that the functions are only named, not executed)
-    # that way, the main loop doesn't have to check against multiple strings to try and match one to the user's input
-    # this is easier to maintain, and faster too!
-    # I've done 3 of your commands as an example of what I mean
+    def workingDirectory():
+        path = input('wd.path$ ')
+        os.chdir(path)
+        print(os.getcwd())
+
+    def non_ess():
+        def time():
+            import datetime
+            now = datetime.datetime.now()
+            print('Currnet date and time: ')
+            print(now.strftime("%Y-%m-%d %H:%M:%S"))
+        def ver():
+            print('version 0.04.5')
+        Action2Dictionary = {
+            'ver': ver,
+            'time': time
+        }
+        action = input('non_ess action: ')
+        Non_essAction = Action2Dictionary.get(action, fallback)
+        Non_essAction()
+
+    def ess():
+        def ls():
+            print(os.listdir(os.getcwd()))
+
+        def home():
+            os.chdir(start_path)
+
+        EssDictionary = {
+            'ls': ls,
+            'cd!':home
+        }
+        ess_action = input('ess action: ')
+        Ess_action= EssDictionary.get(ess_action, fallback)
+        Ess_action()
+
+    def checkDir():
+        print(os.getcwd())
+
+    def clear():
+        os.system('cls' if os.name=='nt' else 'clear')
+
     actionDictionary = {
         'cd.dwn': download,
         'cd.rd': read,
-        'cd~dir': checkDirectory
+        'cd.wr': write,
+        'cd.ex': extra,
+        'cd.ex.com':run_ex,
+        'cd.com': command,
+        'cd~dir': checkDirectory,
+        'cd~': checkDir,
+        'wd': workingDirectory,
+        'cd.ex.opt': ext_com,
+        'clear': clear,
+        'non_ess': non_ess,
+        'ess': ess
     }
 
 
     while True:
         start = input('>')
-        # get reference for which function to execute, then execute it
+        if start == 'quit' or start == 'exit':
+            break
         actionToRun = actionDictionary.get(start, fallback)
         actionToRun()
-        
-        # if start == 'cd.dwn':
-        #     download()
-        # elif start == 'cd.rd':
-        #     read()
-        # elif start == 'cd@': ## Not acctive in final version ~~ Results in shutdown
-        #     filename = input('cd@ ')
-        #     fd = os.open(filename, os.O_RDWR)
-        #     print("File size (in bytes): " + str(os.stat(fd).st_size))
-        #     length = 72
-        #     os.ftruncate(fd, length)
-        # elif start == 'cd.home' or start == 'cd!':
-        #     os.chdir(start_path)
-        # elif start == 'cd~dir':
-        #     cd = input('cd~dir.check$ ')
-        #     if os.path.exists(cd):
-        #         print(os.path.exists(cd))
-        #     else:
-        #         print('that directory does not exist')
-        # elif start == 'cd~':
-        #     path = os.getcwd()
-        #     print(path)
-        # elif start == 'wd':
-        #     path = input('wd.path$ ')
-        #     print(path)
-        #     os.chdir(path)
-        # elif start == 'clear':
-        #     os.system('cls' if os.name == 'nt' else 'clear')
-        # elif start == 'ver':
-        #     print('Version 0.04.34')
-        # elif start == 'ls':
-        #     print(os.listdir(os.getcwd()))
-        # elif start == 'cd.wr':
-        #     write()
-        # elif start == 'cd.ex':
-        #     extra()
-        # elif start == 'cd.ex.com':
-        #     run_ex()
-        # elif start == 'cd.com':
-        #     command()
-        # elif start == 'quit':
-        #     break
-        # elif start == 'cd.ex.opt':
-        #     ext_com()
-        # else:
-        #     print('command doesnt exist')
     return
 Run()
